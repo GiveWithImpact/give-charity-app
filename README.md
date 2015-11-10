@@ -1,5 +1,5 @@
-# Give! Registration App
-Simple, internal utility for registering a user and their mobile device
+# Give! Charity App
+HTML5 Hybrid app using Phonegap/Cordova for Charity Users
 
 ## Install
 
