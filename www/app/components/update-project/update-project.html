@@ -1,0 +1,27 @@
+<ion-view view-title="Give! Charity app">
+    <ion-content>
+        <div class="welcome-container">
+            <div class="row">
+                <div class="col">
+                    <button class="button icon-left ion-android-arrow-back button-clear button-light back-btn" go-back></button>
+                </div>
+                <div class="col col-50">
+                    <span class="welcome-text line-height-40">Update project </span>
+                    <span class="welcome-text line-height-40 font-size-16">(Give Project X)</span>
+                </div>
+                <div class="col">
+                    <button class="btn folder-btn ion-ios-folder-outline" ng-click="openModal()"></button>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success btn-photo" ng-click="takeImage(0)">Take Camera Picture</button>
+        <button class="btn btn-success btn-photo" ng-click="takeImage(1)">Upload from gallery</button>
+        <img src="assets/img/placeholder-640x480.png" alt="" class="img-holder" ng-show="!showPicture">
+        <img ng-src="data:image/png;base64, {{updateProject.mediafile}}" class="img-holder" ng-show="showPicture">
+        <label class="item item-input">
+            <span class="input-label">Comment</span>
+            <input type="text" ng-model="updateProject.comment">
+        </label>
+        <button class="btn btn-success btn-update" ng-click="update()">Post Update...</button>
+    </ion-content>
+</ion-view>

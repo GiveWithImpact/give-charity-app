@@ -1,0 +1,21 @@
+<div>
+    <ion-modal-view>
+        <ion-header-bar align-title="center">
+            <h2 class="title">Give! Charity App</h2>
+        </ion-header-bar>
+        <ion-content>
+            <div class="modal-container">
+                <div class="modal-text-container">
+                    <div class="row">
+                        <div class="col col-50 col-offset-25">
+                            <span class="modal-text line-height-40">Project Activity Log</span>
+                            <span class="modal-text line-height-40 font-size-16">(Give Project X)</span>
+                        </div>
+                    </div>
+                    <button ng-click="closeModal()" class="close-modal button button-icon icon ion-close"></button>
+                </div>
+                <div ng-include src="'app/components/dashboard/dashboard.updateTab.html'"></div>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</div>

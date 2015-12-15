@@ -1,0 +1,7 @@
+<div class="pspt-container">
+    <span class="pspt-text">Reminde me in:</span>
+    <select class="item item-input item-select pspt-dropdown" ng-model="postptoneTime" ng-options="postptoneTime as postptoneTime for postptoneTime in timeOptions">
+        <option>{{postptoneTime}} hours</option>
+    </select>
+    <button class="btn pspt-btn btn-dark" ng-click="postptone(postptoneTime)">Postpone</button>
+</div>

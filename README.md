@@ -7,6 +7,7 @@ HTML5 Hybrid app using Phonegap/Cordova for Charity Users
 2. 'cd give-registration-app'
 3. 'npm install'
 4. 'bower install'
+5. If plugin directory doesnt exist run 'ionic state restore'
 
 ## Build & development
 
@@ -16,6 +17,5 @@ HTML5 Hybrid app using Phonegap/Cordova for Charity Users
  
 ## Testing
 1. 'npm install karma-cli -g'
-2. 'cd www' 
-3. Run `karma start` - this will open a Chrome browser that will mock your Angular app. 
-4. Open a new terminal in the same www/ directory and run: `karma run`
+2. Go to 'give-charity-app' directory
+3. Run `grunt karma` -to start tests. 

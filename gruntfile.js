@@ -3,6 +3,8 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-karma');
 
     grunt.initConfig({
         sass: {
@@ -11,7 +13,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    './www/css/ionic.app.css': './scss/ionic.app.scss'
+                    './www/assets/css/ionic.app.css': './scss/ionic.app.scss'
                 }
             }
         },
@@ -22,21 +24,38 @@ module.exports = function(grunt) {
             },
             target: {
                 files: {
-                    './www/css/ionic.app.min.css': './www/css/ionic.app.css'
+                    './www/assets/css/ionic.app.min.css': './www/assets/css/ionic.app.css'
                 }
+            }
+        },
+        autoprefixer: {
+            options: {
+                browsers: ['last 3 version']
+            },
+            main: {
+                expand: true,
+                flatten: true,
+                src: 'www/assets/css/ionic.app.css',
+                dest: 'www/css'
             }
         },
         watch: {
             scripts: {
                 files: ['./scss/*.scss'],
-                tasks: ['sass', 'cssmin'],
+                tasks: ['sass', 'autoprefixer', 'cssmin'],
                 options: {
                     spawn: false,
                 },
             },
         },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                singleRun: true
+            }
+        }
     });
 
-    grunt.registerTask('default', ['sass', 'cssmin', 'watch']);
+    grunt.registerTask('default', ['sass', 'autoprefixer', 'cssmin', 'watch']);
 
 };

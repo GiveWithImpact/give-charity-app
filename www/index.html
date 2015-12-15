@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
     <title></title>
-
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-
+    <link href="assets/css/drawer.css" rel="stylesheet">
+    <link href="assets/css/bootstrap/css/bootstrap.theme.min.css" rel="stylesheet">
+    <link href="assets/css/ionic.app.min.css" rel="stylesheet">
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
+    <script src="lib/angular-messages/angular-messages.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
-
     <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
-  </head>
+    <script src="app/app.js"></script>
+    <!-- Controllers -->
+    <script src="app/app-ctrl.js"></script>
+    <script src="app/components/project-page/project-page-ctrl.js"></script>
+    <script src="app/components/update-project/update-project-ctrl.js"></script>
+    <script src="app/components/landing/landing-ctrl.js"></script>
+    <script src="app/components/login/login-ctrl.js"></script>
+    <script src="app/components/dashboard/dashboard-ctrl.js"></script>
+    <!-- ========== -->
+    <script src="app/shared/menu/drawer.js"></script>
+    <script src="app/shared/get-data/get-data.js"></script>
+    <script src="app/shared/post-data/post-data.js"></script>
+    <script src="app/shared/camera/camera.js"></script>
+    <script src="app/shared/authorization/authorization.js"></script>
+    <script src="app/shared/go-back/go-back.js"></script>
+    <script src="app/shared/interceptor/interceptor.js"></script>
+    <script src="assets/js/ui-bootstrap-custom-0.14.3.min.js"></script>
+    <script src="assets/js/ui-bootstrap-custom-tpls-0.14.3.min.js"></script>
+</head>
 
-  <body ng-app="starter">
+<body ng-app="starter">
     <ion-nav-view></ion-nav-view>
-  </body>
+</body>
+
 </html>

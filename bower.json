@@ -6,6 +6,8 @@
     },
     "dependencies": {
         "angular-mocks": "~1.4.7",
-        "angular-messages": "~1.4.7"
+        "angular-messages": "~1.4.7",
+        "ngCordova": "~0.1.23-alpha",
+        "angular-http-auth": "~1.2.3"
     }
 }

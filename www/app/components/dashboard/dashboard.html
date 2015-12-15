@@ -1,0 +1,26 @@
+<ion-view view-title="Give! Charity app">
+    <ion-content>
+        <div class="dashboard-container">
+            <div ng-include src="'app/shared/welcomeScreen/welcome.html'"></div>
+            <div class="project-status-container">
+                <uib-tabset>
+                    <uib-tab heading="Project">
+                        <ion-scroll direction="y" delegate-handle="tab" style="height: {{scrollHeight}}px">
+                            <div ng-include src="'app/components/dashboard/dashboard.projectTab.html'"></div>
+                        </ion-scroll>
+                    </uib-tab>
+                    <uib-tab heading="Activity">
+                        <ion-scroll direction="y" delegate-handle="tab" style="height: {{scrollHeight}}px">
+                            <div ng-include src="'app/components/dashboard/dashboard.activityTab.html'"></div>
+                        </ion-scroll>
+                    </uib-tab>
+                    <uib-tab heading="Update">
+                        <ion-scroll direction="y" delegate-handle="tab" style="height: {{scrollHeight}}px">
+                            <div ng-include src="'app/components/dashboard/dashboard.updateTab.html'"></div>
+                        </ion-scroll>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

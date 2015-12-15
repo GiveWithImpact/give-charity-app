@@ -1,0 +1,14 @@
+<div class="update-container" ng-repeat='picture in getPictures.slice().reverse()'>
+    <img class="update-image" ng-src="data:image/png;base64, {{picture.mediafile}}" alt="Default" />
+    <div class="update-text">
+        <h4> {{picture.status}} |</h4> <span>{{picture.date  | date:'dd-MM-yyyy HH:mm'}}</span>
+    </div>
+    <p>{{picture.comment}}</p>
+</div>
+<div class="update-container">
+    <img class="update-image" ng-src="assets/img/placeholder-640x480.png" alt="Default" />
+    <div class="update-text">
+        <h4> Pending |</h4> <span>11/11/2011 11:11</span>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+</div>

@@ -1,0 +1,34 @@
+<ion-view view-title="Give! Charity app">
+    <ion-content>
+        <form id="login-form" class="bs-component" name="loginForm" ng-submit="login(loginForm)" novalidate>
+            <div class="form-header">
+                <h2 id="form-title">
+                    <span>Login to Your Give! account</span>
+                </h2>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+                </span>
+                <input type="email" ng-model="loginForm.userData.username" name="loginEmail" class="form-control" id="login-form-email" placeholder="E-mail" required>
+            </div>
+            <div class="login-warnings" ng-messages="loginForm.loginEmail.$error">
+                <p ng-message="required" ng-if="loginForm.loginEmail.$touched">This field is required</p>
+                <p ng-message="email">This needs to be a valid email</p>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-sunglasses" aria-hidden="true"></i>
+                </span>
+                <input type="password" ng-model="loginForm.userData.password" name="loginPassword" class="form-control" id="login-form-pass" placeholder="Password" required ng-minlength="6">
+            </div>
+            <div class="login-warnings" ng-messages="loginForm.loginPassword.$error">
+                <p ng-message="required" ng-if="loginForm.loginPassword.$touched">This field is required</p>
+                <p ng-message="minlength" ng-if="loginForm.loginPassword.$touched">This field is too short</p>
+            </div>
+            <div class="radio-group">
+                <button class="btn btn-primary btn-submit" type="submit">Login</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
