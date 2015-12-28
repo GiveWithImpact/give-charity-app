@@ -1,11 +1,12 @@
-var giveCharityApp = angular.module('starter', ['ionic', 'starter.controllers', 'ionic.contrib.drawer', 'ui.bootstrap', 'ngCordova', 'ngMessages', 'ngAnimate', "ngCordova.plugins.push"])
+var giveCharityApp = angular.module('starter', ['ionic', 'ionic.contrib.drawer', 'ui.bootstrap', 'ngCordova', 'ngMessages', 'ngAnimate', "ngCordova.plugins.push"])
 
-.constant('GOOGLE_SENDER_ID', '738147804218')
+.constant('PROJECT_OBJECT', 'PROJECT_OBJECT')
+
+.constant('USER_DATA', 'USER_DATA')
 
 .run(['$rootScope', '$ionicPlatform', '$http', '$cordovaNetwork', '$state', 'AuthService', 'CameraService', '$location', '$cordovaDeviceOrientation', function(scope, $ionicPlatform, $http, $cordovaNetwork, $state, AuthService, CameraService, $location, $cordovaDeviceOrientation) {
     $ionicPlatform.ready(function() {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
@@ -56,19 +57,18 @@ var giveCharityApp = angular.module('starter', ['ionic', 'starter.controllers', 
 
 }])
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
     $stateProvider
-
         .state('app', {
             url: '/app',
             abstract: true,
-            templateUrl: 'app/shared/menu/menu.html',
-            controller: 'AppCtrl'
+            templateUrl: 'app/shared/menu/menu.html'
         })
         .state('app.login', {
             url: '/login',
+            cache: false,
             views: {
-                'menuContent': {
+                'login': {
                     templateUrl: 'app/components/login/login.html',
                     controller: 'LoginCtrl'
                 }
@@ -77,7 +77,7 @@ var giveCharityApp = angular.module('starter', ['ionic', 'starter.controllers', 
         .state('app.dashboard', {
             url: '/dashboard',
             views: {
-                'menuContent': {
+                'dashboard': {
                     templateUrl: 'app/components/dashboard/dashboard.html',
                     controller: 'DashboardCtrl'
                 }
@@ -86,16 +86,16 @@ var giveCharityApp = angular.module('starter', ['ionic', 'starter.controllers', 
         .state('app.projectPage', {
             url: '/project-page',
             views: {
-                'menuContent': {
+                'projectPage': {
                     templateUrl: 'app/components/project-page/project-page.html',
                     controller: 'ProjectPageCtrl'
                 }
             }
         })
         .state('app.updateProject', {
-            url: '/update-project',
+            url: '/update-project/:projectId:title',
             views: {
-                'menuContent': {
+                'updateProject': {
                     templateUrl: 'app/components/update-project/update-project.html',
                     controller: 'UpdateProjectCtrl'
                 }
@@ -103,8 +103,9 @@ var giveCharityApp = angular.module('starter', ['ionic', 'starter.controllers', 
         })
         .state('app.landing', {
             url: '/landing',
+            cache: false,
             views: {
-                'menuContent': {
+                'landing': {
                     templateUrl: 'app/components/landing/landing.html',
                     controller: 'LandingCtrl'
                 }
@@ -113,4 +114,8 @@ var giveCharityApp = angular.module('starter', ['ionic', 'starter.controllers', 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/dashboard');
     $httpProvider.interceptors.push('HttpInterceptor');
+    //For android change scroll to native (better performance)
+    if (!ionic.Platform.isIOS()) {
+        $ionicConfigProvider.scrolling.jsScrolling(false);
+    }
 })

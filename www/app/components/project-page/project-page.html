@@ -4,12 +4,12 @@
             <span class="welcome-text">Choose a project</span>
             <button ng-click="openModal()" class="delay button button-icon icon ion-android-volume-off"></button>
         </div>
-        <div class="update-container" ng-repeat="project in projectObject" ui-sref="app.updateProject">
-            <img class="update-image" ng-src="assets/img/placeholder-640x480.png" alt="Default" />
+        <div class="update-container" ng-repeat="project in projectObject" ui-sref="app.updateProject({ projectId: project.project_id, title: project.title  })">
+            <img class="update-image" ng-src="{{project.mediafile}}" alt="Default" />
             <div class="update-text">
-                <h4> Give Project {{project.project_id}}</h4>
+                <h4>{{::project.title}}</h4>
             </div>
-            <p>{{project.comment}}</p>
+            <p>{{::project.comment}}</p>
         </div>
     </ion-content>
 </ion-view>

@@ -1,12 +1,12 @@
-<table class="table-bordered table-striped">
+<table class="table-bordered table-striped dashboard-table">
     <tr>
         <th>When</th>
-        <th class="tg-031e">Project</th>
-        <th class="tg-031e">User</th>
+        <th>Project</th>
+        <th>User</th>
     </tr>
     <tr ng-repeat="project in projectObject">
-        <td class="tg-yw4l">{{project.date}}</td>
-        <td class="tg-yw4l">Give Project {{project.project_id}}</td>
-        <td class="tg-yw4l">{{project.user}}</td>
+        <td>{{::project.date}}</td>
+        <td>{{::project.title}}</td>
+        <td>{{::project.user}}</td>
     </tr>
 </table>

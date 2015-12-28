@@ -4,7 +4,7 @@ giveCharityApp
         var LOCAL_TOKEN_KEY = 'tokenKey';
         var alertPopup;
         // Load token from the local.storage
-        var loadUserCredentials = function() {
+        this.loadUserCredentials = function() {
                 var token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
                 if (token) {
                     useCredentials(token);
@@ -27,7 +27,7 @@ giveCharityApp
         }
         // Sends email and password to backend if everything goes right 
         // fire broadcast witch resend stored POST/GET requests
-        var login = function(userData) {
+        this.login = function(userData) {
             postData.post("auth/login", userData).then(
                 function(success) {
                     storeUserCredentials(success);
@@ -41,13 +41,7 @@ giveCharityApp
                 })
         }
 
-        var logout = function() {
+        this.logout = function() {
             destroyUserCredentials();
-        };
-
-        return {
-            login: login,
-            logout: logout,
-            loadUserCredentials: loadUserCredentials
         };
     })

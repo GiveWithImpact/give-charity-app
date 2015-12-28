@@ -5,8 +5,8 @@ giveCharityApp
         // if those 2 are on/correct it goes to AuthService
         //if one of them is off/wrong popout wit message gonna show
         $scope.login = function(data) {
-            // $scope.isOnline = $cordovaNetwork.isOnline();
-            if (data.$valid) {
+            $scope.isOnline = $cordovaNetwork.isOnline();
+            if (data.$valid && $scope.isOnline) {
                 AuthService.login(data.userData)
             } else if (!$scope.isOnline) {
                 alertPopup = $ionicPopup.alert({
@@ -20,8 +20,5 @@ giveCharityApp
                 });
             }
         };
-        // $scope.logout = function() {
-        //     AuthService.logout();
-        //     $state.go('app.login');
-        // };
+
     })

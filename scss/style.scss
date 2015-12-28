@@ -3,7 +3,7 @@
   }
   
   .line-height-40 {
-      line-height: 35px!important;
+      line-height: 30px!important;
   }
   
   .welcome-container {
@@ -47,6 +47,9 @@
           height: 90px;
           background-color: #7E7E7E;
           text-align: center;
+          .row-0 {
+              margin: 0;
+          }
           .modal-text {
               font-size: 20px;
               color: white;
@@ -100,20 +103,20 @@
           >li {
               width: 33.33%;
               text-align: center;
-          }
-          >li>a {
-              background-color: #F4F4F4;
-              margin: 0;
-              border: 1px solid #D7D7D7;
-              border-radius: 0;
-              color: #848484;
-          }
-          >li.active>a,
-          >li.active>a:hover,
-          >li.active>a:focus {
-              background-color: #fff;
-              border-bottom: none;
-              color: #000000;
+              >a {
+                  background-color: #F4F4F4;
+                  margin: 0;
+                  border: 1px solid #D7D7D7;
+                  border-radius: 0;
+                  color: #848484;
+              }
+              &.active>a,
+              &.active>a:hover,
+              &.active>a:focus {
+                  background-color: #fff;
+                  border-bottom: none;
+                  color: #000000;
+              }
           }
       }
       .tab-content {
@@ -121,23 +124,21 @@
       }
   }
   
-  table {
+  .dashboard-table {
       border-collapse: collapse;
       border-spacing: 0;
-      width: 100%
-  }
-  
-  table td {
-      width: 33%;
-      text-align: center;
-      padding: 10px 5px;
-  }
-  
-  table th {
-      text-align: center;
-      background-color: #F2F2F2;
-      font-weight: 600;
-      padding: 10px 5px;
+      width: 100%;
+      td {
+          width: 33%;
+          text-align: center;
+          padding: 10px 5px;
+      }
+      th {
+          text-align: center;
+          background-color: #F2F2F2;
+          font-weight: 600;
+          padding: 10px 5px;
+      }
   }
   
   .update-container {
@@ -162,7 +163,7 @@
       }
   }
   
-  .pspt-container {
+  .postpone-container {
       padding: 10px 20px 10px 20px;
       .pspt-text {
           display: inline-block;
@@ -257,7 +258,7 @@
       .form-header {
           position: relative;
       }
-      #form-title {
+      .form-title {
           text-align: center;
           font-size: 16px;
           padding: 20px 0px 20px 0px;
@@ -272,7 +273,6 @@
           margin-top: 20px;
           background: $main-color;
       }
-      .login-warnings p {}
       .login-warnings p.ng-enter,
       .login-warnings p.ng-leave {
           transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;

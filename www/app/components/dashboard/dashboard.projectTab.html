@@ -1,17 +1,12 @@
-<table class="table-bordered table-striped">
+<table class="table-bordered table-striped dashboard-table">
     <tr>
-        <th class="tg-031e">Project</th>
-        <th class="tg-031e"></th>
-        <th class="tg-031e"></th>
+        <th>Project</th>
+        <th></th>
+        <th></th>
     </tr>
     <tr ng-repeat="project in projectObject">
-        <td class="tg-yw4l">Give Project {{project.project_id}}</td>
-        <td class="tg-yw4l">[View Updates]</td>
-        <td class="tg-yw4l" ui-sref="app.updateProject">[Update Now]</td>
-    </tr>
-    <tr>
-        <td class="tg-yw4l">Give Project X</td>
-        <td class="tg-yw4l">[View Updates]</td>
-        <td class="tg-yw4l" ui-sref="app.updateProject">[Update Now]</td>
+        <td>{{::project.title}}</td>
+        <td ng-click="openModal(project.project_id, project.title)">[View Updates]</td>
+        <td ui-sref="app.updateProject({ projectId: project.project_id, title: project.title })">[Update Now]</td>
     </tr>
 </table>

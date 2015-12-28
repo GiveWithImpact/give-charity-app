@@ -2,15 +2,16 @@ giveCharityApp.service('CameraService', function($cordovaCamera, $cordovaFile, $
     var ARRAY_STORAGE_KEY = 'giveCharityApp';
     var updateArray = [];
     var image;
-    // Function is called on on app start, gets images from localStorage parse them and put in images array
+    var array;
+    var source;
+    var save;
+
     this.getImage = function() {
         return image;
     };
 
     //Options for CordovaCamera 
     this.optionsForType = function(type) {
-        var source;
-        var save;
         switch (type) {
             case 0:
                 source = Camera.PictureSourceType.CAMERA;
@@ -25,13 +26,13 @@ giveCharityApp.service('CameraService', function($cordovaCamera, $cordovaFile, $
             allowEdit: false,
             encodingType: Camera.EncodingType.JPEG,
             popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
+            saveToPhotoAlbum: false,
         };
     };
 
     //Gets array from localStorage
     this.getArray = function() {
-        var array = window.localStorage.getItem(ARRAY_STORAGE_KEY);
+        array = window.localStorage.getItem(ARRAY_STORAGE_KEY);
         if (array) {
             updateArray = JSON.parse(array);
         } else {
