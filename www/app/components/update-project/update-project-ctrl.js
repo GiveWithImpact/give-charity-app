@@ -1,19 +1,20 @@
-giveCharityApp
-    .controller('UpdateProjectCtrl', function($scope, $ionicPlatform, $cordovaNetwork, $rootScope, $ionicModal, $ionicPopup, $stateParams, CameraService, postData) {
+angular.module('starter')
+    .controller('UpdateProjectCtrl', function($scope, $ionicPlatform, $cordovaNetwork, $rootScope, $ionicModal, $ionicPopup, $stateParams, CameraService, postData, StoreData) {
         var options;
         var i;
         var updateArray;
-        $rootScope.getPictures = CameraService.getArray();
-        $ionicPlatform.ready(function() {
-            CameraService.getArray();
-        });
+        $rootScope.pictures = StoreData.getData('giveCharityApp');
         $scope.title = $stateParams.title;
+
+        $ionicPlatform.ready(function() {
+            CameraService.loadMedia();
+        });
 
         function getProjectPictures() {
             $scope.pictureArray = [];
-            for (i = 0; i < $rootScope.getPictures.length; i++) {
-                if ($rootScope.getPictures[i].project_id === $stateParams.projectId)
-                    $scope.pictureArray.push($rootScope.getPictures[i])
+            for (i = 0; i < $rootScope.pictures.length; i++) {
+                if ($rootScope.pictures[i].project_id === $stateParams.projectId)
+                    $scope.pictureArray.push($rootScope.pictures[i])
             }
         }
         $scope.showPicture = false;
@@ -25,8 +26,8 @@ giveCharityApp
                 status: "Pending"
             }
             // Invoke function from service wich by using ngCamera takes photo
-        $scope.takeImage = function(index) {
-                options = CameraService.optionsForType(index);
+        $scope.takeImage = function(optionId) {
+                options = CameraService.optionsForType(optionId);
                 CameraService.saveMedia(options).then(function() {
                     $scope.updateProject.mediafile = CameraService.getImage();
                     $scope.showPicture = true;
@@ -37,7 +38,7 @@ giveCharityApp
         $scope.update = function() {
             $scope.updateProject.date = Date.now();
             CameraService.saveUpdate($scope.updateProject);
-            $rootScope.getPictures = CameraService.getArray();
+            $rootScope.pictures = StoreData.getData('giveCharityApp');
             alertPopup = $ionicPopup.alert({
                 title: 'Update',
                 template: 'Update has been made and saved in storage!'
@@ -45,23 +46,20 @@ giveCharityApp
             sendData();
         }
 
-
-        $scope.network = $cordovaNetwork.getNetwork();
-        $scope.isOnline = $cordovaNetwork.isOnline();
         // listen for Online event
-        $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
+        document.addEventListener("online", function(event, networkState) {
             sendData();
-        })
+        }, false)
 
         function sendData() {
             $scope.network = $cordovaNetwork.getNetwork();
             if ($scope.network == 'wifi') {
-                updateArray = CameraService.getArray();
+                updateArray = StoreData.getData('giveCharityApp');
                 if (updateArray.length > 0) {
-                    postData.post("projects/update", $rootScope.getPictures).then(function() {}, function() {})
+                    postData.post("projects/update", $rootScope.pictures).then(function() {}, function() {})
                 }
             }
-            $scope.$digest();
+            // $scope.$digest();
         }
 
         //Prepare modal box from template if it is called uses slide-in-up animation.

@@ -1,4 +1,4 @@
-<div class="update-container" ng-repeat='picture in getPictures.slice().reverse()'>
+<div class="update-container" ng-repeat='picture in pictures.slice().reverse()'>
     <img class="update-image" ng-src="data:image/png;base64, {{picture.mediafile}}" alt="Default" />
     <div class="update-text">
         <h4> {{::picture.status}} |</h4> <span>{{::picture.date  | date:'dd-MM-yyyy HH:mm'}}</span>

@@ -1,30 +1,9 @@
-giveCharityApp
-    .controller('DashboardCtrl', function($scope, $ionicScrollDelegate, $rootScope, getData, $ionicModal, $cordovaNetwork, StoreData, CameraService, USER_DATA, PROJECT_OBJECT) {
+angular.module('starter')
+    .controller('DashboardCtrl', function($scope, $ionicScrollDelegate, $rootScope, getData, $ionicModal, $cordovaNetwork, $ionicPlatform, StoreData, CameraService, USER_DATA, PROJECT_OBJECT) {
         var windowHeight;
 
-        $rootScope.getPictures = StoreData.getData('giveCharityApp');
-        $scope.scrollHeight = tabsHeight();
+        $rootScope.pictures = StoreData.getData('giveCharityApp');
         $scope.pictureArray = [];
-        //Updates ion-scroll height in dashboard tabs on orientation change, 
-        //maybe it's not a function that was requierd ,but wihtout it it looks much worse
-
-        window.addEventListener("orientationchange", function() {
-            $scope.scrollHeight = tabsHeight();
-            $scope.$digest();
-        }, false);
-
-        function isOrientationPortrait() {
-            return window.innerHeight > window.innerWidth
-        }
-
-        function tabsHeight() {
-            windowHeight = window.innerHeight;
-            if (isOrientationPortrait()) {
-                return windowHeight - 361;
-            } else {
-                return windowHeight - 100;
-            }
-        }
 
         //Ionic modal
         $ionicModal.fromTemplateUrl('app/components/update-project/update-page.modal.html', {
@@ -45,9 +24,9 @@ giveCharityApp
 
         function getProjectPictures(projectId) {
             $scope.pictureArray = [];
-            for (i = 0; i < $rootScope.getPictures.length; i++) {
-                if (parseInt($rootScope.getPictures[i].project_id) === projectId) {
-                    $scope.pictureArray.push($rootScope.getPictures[i])
+            for (i = 0; i < $rootScope.pictures.length; i++) {
+                if (parseInt($rootScope.pictures[i].project_id) === projectId) {
+                    $scope.pictureArray.push($rootScope.pictures[i])
                 }
             }
         }
@@ -63,14 +42,16 @@ giveCharityApp
             }, function(error) {});
         }
 
+
         function onAppStart() {
-            if ($cordovaNetwork.isOnline()) {
+            if (navigator.connection.type !== "none") {
                 getDataFromBackend();
             } else {
                 $scope.projectObject = StoreData.getData(PROJECT_OBJECT);
                 $scope.name = StoreData.getData(USER_DATA).name;
             }
         }
-        onAppStart();
-
+        $ionicPlatform.ready(function() {
+            onAppStart();
+        });
     })

@@ -2,7 +2,7 @@
     <ion-content overflow-scroll="false">
         <div class="dashboard-container">
             <div ng-include src="'app/shared/welcomeScreen/welcome.html'"></div>
-            <div class="project-status-container">
+            <div class="project-status-container" tab-scroll>
                 <uib-tabset>
                     <uib-tab heading="Project">
                         <ion-scroll direction="y" delegate-handle="tab" style="height: {{scrollHeight}}px">

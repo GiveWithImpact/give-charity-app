@@ -8091,22 +8091,23 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-.font-size-16 {
-  font-size: 16px !important; }
-
-.line-height-40 {
-  line-height: 30px !important; }
-
 .welcome-container {
   width: 100%;
   height: 90px;
   background-color: #00468A;
   text-align: center; }
-  .welcome-container .welcome-text {
-    font-size: 20px;
+  .welcome-container .welcome-text,
+  .welcome-container .update-header,
+  .welcome-container .update-text {
+    font-size: 16px;
     color: white;
     line-height: 90px;
     display: block; }
+  .welcome-container .update-header,
+  .welcome-container .update-text {
+    line-height: 30px; }
+  .welcome-container .update-header {
+    font-size: 20px; }
   .welcome-container .folder-btn {
     border-radius: 15%;
     width: 50px;
@@ -8133,11 +8134,14 @@ a.button {
   text-align: center; }
   .modal-container .modal-text-container .row-0 {
     margin: 0; }
-  .modal-container .modal-text-container .modal-text {
-    font-size: 20px;
+  .modal-container .modal-text-container .modal-text,
+  .modal-container .modal-text-container .modal-header-text {
+    line-height: 30px;
     color: white;
-    line-height: 90px;
-    display: block; }
+    display: block;
+    font-size: 16px; }
+  .modal-container .modal-text-container .modal-header {
+    font-size: 20px; }
   .modal-container .modal-text-container .close-modal {
     color: white; }
 
@@ -8252,9 +8256,6 @@ a.button {
   color: #ffffff;
   border: 2px solid #E4E4E4; }
 
-ion-scroll[direction=y] {
-  height: calc(100vh - 361px); }
-
 .btn-photo {
   background: #76CB82;
   display: block;
@@ -8287,9 +8288,6 @@ ion-scroll[direction=y] {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
   background: #f9f9f9;
   background-size: 50% auto; }
-  #login-form .radio-group {
-    width: 100%;
-    background: transparent; }
   #login-form .input-group {
     margin-top: 10px; }
     #login-form .input-group:nth-child(1) {

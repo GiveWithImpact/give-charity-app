@@ -1,18 +1,17 @@
-giveCharityApp
+angular.module('starter')
     .service('AuthService', function($q, $http, $rootScope, $ionicPopup, postData) {
 
-        var LOCAL_TOKEN_KEY = 'tokenKey';
-        var alertPopup;
+        var localTokenKey = 'tokenKey';
         // Load token from the local.storage
         this.loadUserCredentials = function() {
-                var token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
+                var token = window.localStorage.getItem(localTokenKey);
                 if (token) {
                     useCredentials(token);
                 }
             }
             // Store token from the server to the local.storage
         function storeUserCredentials(token) {
-            window.localStorage.setItem(LOCAL_TOKEN_KEY, token);
+            window.localStorage.setItem(localTokenKey, token);
             useCredentials(token);
         }
 
@@ -23,7 +22,7 @@ giveCharityApp
 
         function destroyUserCredentials() {
             $http.defaults.headers.common['X-Auth-Token'] = undefined;
-            window.localStorage.removeItem(LOCAL_TOKEN_KEY);
+            window.localStorage.removeItem(localTokenKey);
         }
         // Sends email and password to backend if everything goes right 
         // fire broadcast witch resend stored POST/GET requests
@@ -34,7 +33,7 @@ giveCharityApp
                     $rootScope.$broadcast('event:loginConfirmed');
                 },
                 function(error) {
-                    alertPopup = $ionicPopup.alert({
+                    $ionicPopup.alert({
                         title: 'Login Problem',
                         template: 'Wrong Password or Email'
                     });

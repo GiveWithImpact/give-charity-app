@@ -1,4 +1,4 @@
-giveCharityApp
+angular.module('starter')
     .controller('ProjectPageCtrl', function($scope, $ionicModal, $ionicPopup, getData, postData) {
         $scope.timeOptions = [2, 4, 6];
         $scope.postponeTime = $scope.timeOptions[0];

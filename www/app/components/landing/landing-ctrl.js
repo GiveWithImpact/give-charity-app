@@ -1,10 +1,10 @@
-giveCharityApp
+angular.module('starter')
     .controller('LandingCtrl', function($scope, $ionicPopup, getData, postData, StoreData, PROJECT_OBJECT, USER_DATA) {
         //In final stage this data will come from backend..
         $scope.timeOptions = [2, 4, 6];
         $scope.postponeTime = $scope.timeOptions[0];
 
-        getDataFromBackend = function() {
+        function getDataFromBackend() {
             getData.get('updates/pending').then(function(success) {
                 $scope.projectObject = success.data;
             }, function(error) {});
@@ -24,7 +24,7 @@ giveCharityApp
         }
 
         function onAppStart() {
-            if ($cordovaNetwork.isOnline()) {
+            if (navigator.connection.type !== "none") {
                 getDataFromBackend();
             } else {
                 $scope.projectObject = StoreData.getData('PROJECT_OBJECT');
